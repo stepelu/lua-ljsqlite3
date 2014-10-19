@@ -15,7 +15,6 @@
 -- TODO: Add extended error codes from Sqlite?
 -- TODO: Consider type checks?
 -- TODO: Exposed cdef constants are ok?
--- TODO: Improve formatted printing of __call() and use io.write?
 -- TODO: Resultset (and so exec) could be optimized by avoiding loads/stores 
 -- TODO: of row table via _step?
 
@@ -371,7 +370,8 @@ function conn_mt:rowexec(command) T_open(self)
   return unpack(res)
 end
 
-function conn_mt:__call(commands) T_open(self)
+function conn_mt:__call(commands, out) T_open(self)
+  out = out or print
   local cmd1 = split(commands, ";")
   for c=1,#cmd1 do
     local cmd = trim(cmd1[c])
@@ -379,16 +379,16 @@ function conn_mt:__call(commands) T_open(self)
       local stmt = self:prepare(cmd)
       local ret, n = stmt:resultset()
       if ret then -- All the results get handled, not only last one.
-  print(unpack(ret[0])) -- Headers are printed.
-  for i=1,n do
-    local o = {}
-    for j=1,#ret[0] do
-      local v = ret[j][i]
-      if type(v) == "nil" then v = "" end -- Empty strings for NULLs.
-      o[#o+1] = v
-    end
-    print(unpack(o))
-  end
+        out(unpack(ret[0])) -- Headers are printed.
+        for i=1,n do
+          local o = {}
+          for j=1,#ret[0] do
+            local v = ret[j][i]
+            if type(v) == "nil" then v = "" end -- Empty strings for NULLs.
+            o[#o+1] = tostring(v)
+          end
+          out(unpack(o))
+        end
       end
       stmt:close()
     end
