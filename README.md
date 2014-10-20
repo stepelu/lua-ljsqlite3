@@ -6,7 +6,7 @@ SQLite databases require no preliminary setup (installation and configuration or
 Using the MIT licensed LJSQLite3 library data can be conveniently exchanged between Lua and SQLite databases. Moreover arbitrary operations can be performed on SQLite databases directly from Lua.
 
 The following example presents the main features of this library:
-```
+```lua
 local sql = require "ljsqlite3"
 local conn = sql.open("") -- Open a temporary in-memory database.
   
