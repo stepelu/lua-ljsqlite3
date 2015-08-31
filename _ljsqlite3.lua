@@ -161,9 +161,10 @@ int sqlite3_create_function(
 --------------------------------------------------------------------------------
 local sql
 if jit.os == "Windows" then
-  local path = package.path:gsub("%.lua", "%.dll")
-  local search = package.searchpath
-  sql = ffi.load(search("ljsqlite3.windows.sqlite3", path))
+  -- local path = package.path:gsub("%.lua", "%.dll")
+  -- local search = package.searchpath
+  -- sql = ffi.load(search("ljsqlite3.windows.sqlite3", path))
+  sql = ffi.load("sqlite3")
 elseif jit.os == "OSX" then
   sql = ffi.load("libsqlite3")
 else
