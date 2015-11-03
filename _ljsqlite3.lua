@@ -159,17 +159,7 @@ int sqlite3_create_function(
 ]]
 
 --------------------------------------------------------------------------------
-local sql
-if jit.os == "Windows" then
-  -- local path = package.path:gsub("%.lua", "%.dll")
-  -- local search = package.searchpath
-  -- sql = ffi.load(search("ljsqlite3.windows.sqlite3", path))
-  sql = ffi.load("sqlite3")
-elseif jit.os == "OSX" then
-  sql = ffi.load("libsqlite3")
-else
-  sql = ffi.load("libsqlite3.so.0")
-end
+local sql = ffi.load("sqlite3")
 
 local transient = ffi.cast("sqlite3_destructor_type", -1)
 local int64_ct = ffi.typeof("int64_t")
