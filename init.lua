@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- A library for interfacing with SQLite3 databases.
 --
--- Copyright (C) 2011-2014 Stefano Peluchetti. All rights reserved.
+-- Copyright (C) 2011-2016 Stefano Peluchetti. All rights reserved.
 --
 -- Features, documentation and more: http://www.scilua.org .
 -- 
