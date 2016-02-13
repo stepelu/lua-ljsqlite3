@@ -3,7 +3,7 @@ LJSQLITE3 - SQLite3 Interface
 
 Pure LuaJIT binding for [SQLite3](http://sqlite.org) databases.
 
-## Features:
+## Features
 
 - all SQLite3 types are supported and mapped to LuaJIT types
 - efficient implementation via value-binding methods and prepared statements
