@@ -1,5 +1,5 @@
-LJSQLITE3 - SQLite3 Interface
-=============================
+LJSQLite3: SQlite3 Interface
+============================
 
 Pure LuaJIT binding for [SQLite3](http://sqlite.org) databases.
 
