@@ -1,11 +1,16 @@
-LJSQLite3
-=========
+LJSQLITE3 - SQLite3 Interface
+=============================
 
-SQLite databases require no preliminary setup (installation and configuration or a database server), offer competitive performance and are portable as each database is fully contained in a single file. Additionally the command-line shell can be used to facilitate common tasks. Thanks to all these features SQLite databases are ideal to store and manipulate scientific data. We refer to http://sqlite.org for more information on SQLite.
+Pure LuaJIT binding for [SQLite3](http://sqlite.org) databases.
 
-Using the MIT licensed LJSQLite3 library data can be conveniently exchanged between Lua and SQLite databases. Moreover arbitrary operations can be performed on SQLite databases directly from Lua.
+## Features:
 
-The following example presents the main features of this library:
+- all SQLite3 types are supported and mapped to LuaJIT types
+- efficient implementation via value-binding methods and prepared statements
+- ability to extend SQLite3 via scalar and aggregate (Lua) callback functions
+- command-line shell feature
+- results by row or by whole table
+
 ```lua
 local sql = require "ljsqlite3"
 local conn = sql.open("") -- Open a temporary in-memory database.
@@ -52,4 +57,15 @@ conn "SELECT MYFUN(num) FROM t"
 conn:close() -- Close stmt as well.
 ```
 
-Info: http://scilua.org/ljsqlite3.html
+## Install
+
+This module is included in the [ULua](http://ulua.io) distribution, to install it use:
+```
+upkg add ljsqlite3
+```
+
+Alternatively, manually install this module making sure that all dependencies listed in the `require` section of [`__meta.lua`](__meta.lua) are installed as well (dependencies starting with `clib_` are standard C dynamic libraries).
+
+## Documentation
+
+Refer to the [official documentation](http://scilua.org/ljsqlite3.html).
