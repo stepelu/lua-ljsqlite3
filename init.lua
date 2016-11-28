@@ -358,7 +358,11 @@ function conn_mt:rowexec(command) T_open(self)
     err("misuse", "multiple records returned, 1 expected")
   end
   stmt:close()
-  return unpack(res)
+  if res then
+    return unpack(res)
+  else
+    return nil
+  end
 end
 
 function conn_mt:__call(commands, out) T_open(self)
