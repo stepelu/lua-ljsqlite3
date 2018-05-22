@@ -596,9 +596,11 @@ end
 function stmt_mt:bindkv(t, pre) T_open(self)
   pre = pre or ":"
   for k,v in pairs(t) do
-    local param = sql.sqlite3_bind_parameter_index(self._ptr, pre..k)
-    if param ~= 0 then
-      self:_bind1(param, v)
+    if type(k) == "string" then
+      local param = sql.sqlite3_bind_parameter_index(self._ptr, pre..k)
+      if param ~= 0 then
+        self:_bind1(param, v)
+      end
     end
   end
   return self
