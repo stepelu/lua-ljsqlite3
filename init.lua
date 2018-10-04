@@ -574,6 +574,19 @@ function stmt_mt:resultset(get, maxrecords) T_open(self)
   return out, n
 end
 
+-- iterator over rows
+function stmt_mt:rows()
+  return function() T_open(self)
+    local row = self:step()
+    if row then
+      return row
+    else
+      self:clearbind():reset()
+      return nil
+    end
+  end
+end
+
 -- Statement bind --------------------------------------------------------------
 function stmt_mt:_bind1(i, v)
   local code = set_column(self._ptr, v, i) -- Here indexing 1,N.
